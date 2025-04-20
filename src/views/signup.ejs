@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./partials/head') %>
+    <title>Signup</title>
+  </head>
+  <body>
+    <%- include('./partials/nav') %>
+    <div class="container mt-4">
+      <form action="/signup" method="post">
+        <div class="mb-3">
+          <label for="Fullname" class="form-label">Fullname</label>
+          <input
+            type="text"
+            class="form-control"
+            name="Fullname"
+            id="Fullname"
+            aria-describedby="Fullname"
+            placeholder="Enter your Fullname"
+            required
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Email address</label>
+          <input
+            type="email"
+            class="form-control"
+            name="email"
+            id="exampleInputEmail1"
+            aria-describedby="emailHelp"
+            placeholder="Enter your email"
+            required
+          />
+        </div>
+
+        <% if (error && error.length > 0) { %>
+          <% error.forEach(msg => { %>
+            <p style="color: rgb(205, 0, 0); margin-top: 10px;"><%= msg %></p>
+          <% }) %>
+        <% } %>
+
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input
+            type="password"
+            name="password"
+            class="form-control"
+            id="exampleInputPassword1"
+            placeholder="Enter your password"
+            required
+          
+          />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+    <%- include('./partials/script') %>
+  </body>
+</html>

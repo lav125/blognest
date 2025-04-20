@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./partials/head') %>
+    <title>Login</title>
+  </head>
+  <body>
+    <%- include('./partials/nav') %>
+
+    <div class="container mt-4">
+      <form action="/signin" method="post">
+        <div class="mb-3">
+          <label for="email" class="form-label">Email address</label>
+          <input
+            type="email"
+            name="email"
+            class="form-control"
+            id="email"
+            aria-describedby="emailHelp"
+            required
+          />
+          <% if (error && error.length > 0) { %>
+            <% error.forEach(msg => { %>
+              <p style="color: rgb(205, 0, 0); margin-top: 10px;"><%= msg %></p>
+            <% }) %>
+          <% } %>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input
+            type="password"
+            name="password"
+            class="form-control"
+            id="password"
+            required
+          />
+
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+      <p id="errorMsg" style="color: red; display: none"></p>
+    </div>
+
+    <%- include('./partials/script') %>
+
+    <!-- <script>
+       console.log("Script Loaded!");
+      document
+        .getElementById("loginForm")
+        .addEventListener("submit", async function (event) {
+          event.preventDefault(); 
+          console.log("Form Submitted!");
+
+          const email = document.getElementById("email").value;
+          const password = document.getElementById("password").value;
+          const errorMsg = document.getElementById("errorMsg");
+
+          const response = await fetch("/signin", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password }),
+          });
+
+          const data = await response.json();
+
+          if (response.ok) {
+            window.location.href = data.redirect; 
+            console.log("data send");
+          } else {
+            errorMsg.style.display = "block";
+            errorMsg.textContent = data.message || "Login failed!";
+          }
+        });
+    </script> -->
+  </body>
+</html>
